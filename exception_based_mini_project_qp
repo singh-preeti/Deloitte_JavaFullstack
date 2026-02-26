@@ -1,0 +1,133 @@
+Menu-Driven E-Commerce Application Using Java
+Problem Statement
+
+Design and implement a menu-driven Java-based E-Commerce Application that simulates an online shopping system. The application should allow a customer to browse products, add them to a shopping cart, and complete a purchase while handling all possible runtime errors using exception handling.
+
+System Requirements
+1. Product Management
+
+Create a Product class with the following attributes:
+
+productId
+
+productName
+
+price
+
+stock
+
+Provide methods to:
+
+Display product details
+
+Update product stock after purchase
+
+2. Customer Management
+
+Create a Customer class with:
+
+customerId
+
+name
+
+balance
+
+Provide methods to:
+
+Display customer details
+
+Deduct balance after successful payment
+
+3. Shopping Cart
+
+Implement a cart system that allows:
+
+Adding products to the cart
+
+Calculating the total cart value
+
+Ensure that products cannot be added if the stock is insufficient.
+
+4. Custom Exception Handling
+
+Create a custom checked exception:
+
+InsufficientBalanceException
+
+Throw this exception when the customer’s balance is less than the total cart amount.
+
+Use built-in exceptions to handle:
+
+Out-of-stock products
+
+Invalid menu choices
+
+Invalid quantity inputs
+
+5. Menu-Driven Operations
+
+Display the following menu repeatedly until the user chooses to exit:
+
+========= E-COMMERCE MENU =========
+1. View Available Products
+2. View Customer Details
+3. Add Product to Cart
+4. View Cart
+5. Make Payment
+6. Exit
+==================================
+6. Payment Processing
+
+Implement payment using try-catch-finally
+
+On successful payment:
+
+Deduct customer balance
+
+Reduce product stock
+
+Display Order Confirmation Message
+
+On failure:
+
+Display meaningful error messages such as:
+
+“Product out of stock”
+
+“Insufficient balance to complete payment”
+
+“Invalid input, please try again”
+
+7. Program Termination
+
+Ensure:
+
+Proper resource handling
+
+Graceful program termination without runtime errors
+
+Exit message when the user selects Exit
+
+Expected Output
+
+Clear menu display
+
+Proper validation messages
+
+Order confirmation on successful purchase
+
+Error messages for failed transactions
+
+Continuous execution until user chooses to exit
+
+Learning Objectives
+
+Object-Oriented Programming (OOP)
+
+Exception handling (checked & unchecked)
+
+Custom exceptions
+
+Menu-driven program design
+
+Real-world application simulation
