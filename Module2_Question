@@ -1,0 +1,21 @@
+Mini Project Question: E-Commerce Application (Java)
+
+Design a Java-based E-Commerce application for an online shopping system.
+
+Create a Product class with productId, productName, price, and stock.
+
+Create a Customer class with customerId, name, and balance.
+
+Implement a method to add products to a cart.
+
+Use exception handling to manage out-of-stock products.
+
+Create a custom exception InsufficientBalanceException.
+
+Handle payment using try-catch-finally.
+
+Display order confirmation on successful purchase.
+
+Print meaningful error messages for failed transactions.
+
+Ensure proper program termination without runtime errors.
