@@ -1,0 +1,123 @@
+Dependency injection:
+Address.java
+package org.springcore;
+
+public class Address {
+    int road_no;
+    String city;
+    String state;
+
+    public Address() {
+    }
+
+
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getRoad_no() {
+        return road_no;
+    }
+
+    public void setRoad_no(int road_no) {
+        this.road_no = road_no;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "city='" + city + '\'' +
+                ", road_no=" + road_no +
+                ", state='" + state + '\'' +
+                '}';
+    }
+}
+
+Updated Employee.java
+package org.springcore;
+
+public class Employee {
+    int emp_id;
+    String emp_name;
+    Address add;
+    public Employee() {
+    }
+    public Employee(int emp_id, String emp_name, Address add) {
+        super();
+        this.emp_id = emp_id;
+        this.emp_name = emp_name;
+        this.add = add;
+    }
+
+
+
+    public int getEmp_id() {
+        return emp_id;
+    }
+
+    public void setEmp_id(int emp_id) {
+        this.emp_id = emp_id;
+    }
+
+    public String getEmp_name() {
+        return emp_name;
+    }
+
+    public void setEmp_name(String emp_name) {
+        this.emp_name = emp_name;
+    }
+
+    public Address getAdd() {
+        return add;
+    }
+
+    public void setAdd(Address add) {
+        this.add = add;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "add=" + add +
+                ", emp_id=" + emp_id +
+                ", emp_name='" + emp_name + '\'' +
+                '}';
+    }
+}
+
+updated config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+    ">
+    <bean name="emp" class="org.springcore.Employee" autowire="byName">
+        <property name="emp_id" value="1001"></property>
+        <property name="emp_name" value="Bhavana"></property>
+    </bean>
+    <bean name="add" class="org.springcore.Address">
+        <property name="road_no" value="22"></property>
+        <property name="city" value="mumbai"></property>
+        <property name="state" value="maharashtra"></property>
+    </bean>
+</beans>
+
