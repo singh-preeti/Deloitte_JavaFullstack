@@ -1,0 +1,58 @@
+banking-management-system
+│
+└── src
+    └── com.bank
+        │
+        ├── model
+        │     Account.java
+        │
+        ├── service
+        │     DepositService.java
+        │     WithdrawService.java
+        │     InterestService.java
+        │     BankingService.java
+        │
+        ├── config
+        │     BankConfig.java
+        │
+        └── main
+              BankApplication.java
+
+  This project must demonstrate:
+
+IoC Container
+
+Dependency Injection
+
+@Component
+
+@Autowired
+
+@Configuration
+
+@ComponentScan
+
+Layered Architecture
+
+  #########################Developement Assignment########################################
+1.	Develop a Banking Management System using Spring Core with Annotation Configuration.
+
+2.	Create a model class Account containing accountNumber, accountHolderName, accountType, and balance.
+
+3.	Implement a DepositService to add money to the account balance.
+
+4.	Implement a WithdrawService to deduct money from the account after checking sufficient balance.
+
+5.	Implement an InterestService to calculate interest on the current balance.
+
+6.	Create a BankingService that uses all services using @Autowired dependency injection.
+
+7.	Display account details and the final balance after deposit, withdrawal, and interest calculation.
+
+8.	Configure Spring using @Configuration and @ComponentScan in BankConfig class.
+
+9.	Load the Spring container using AnnotationConfigApplicationContext in the main class.
+
+10.	Test the application by creating an Account object and performing banking operations.
+
+  
