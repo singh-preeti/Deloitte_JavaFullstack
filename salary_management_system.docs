@@ -1,0 +1,215 @@
+Real time application:
+salary-management
+│
+└── src
+    └── com.salary
+        │
+        ├── model
+        │     Employee.java
+        │
+        ├── service
+        │     BonusService.java
+        │     TaxService.java
+        │     SalaryService.java
+        │
+        ├── config
+        │     AppConfig.java
+        │
+        └── main
+              SalaryApplication.java
+  //Employee.java
+  package com.salary.model;
+
+public class Employee {
+
+    private int empId;
+    private String empName;
+    private String department;
+    private double basicSalary;
+
+    public Employee() {
+    }
+
+    public Employee(int empId, String empName, String department, double basicSalary) {
+        this.empId = empId;
+        this.empName = empName;
+        this.department = department;
+        this.basicSalary = basicSalary;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public double getBasicSalary() {
+        return basicSalary;
+    }
+
+    public void setBasicSalary(double basicSalary) {
+        this.basicSalary = basicSalary;
+    }
+}
+
+//BonusService.java
+
+package com.salary.service;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class BonusService {
+
+    public double calculateBonus(double salary) {
+
+        double bonus = salary * 0.10;
+
+        System.out.println("Bonus Calculated: " + bonus);
+
+        return bonus;
+    }
+}
+
+//TaxService.java
+
+package com.salary.service;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class TaxService {
+
+    public double calculateTax(double salary) {
+
+        double tax = salary * 0.08;
+
+        System.out.println("Tax Deducted: " + tax);
+
+        return tax;
+    }
+}
+
+//SalaryService.java
+package com.salary.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.salary.model.Employee;
+
+@Component
+public class SalaryService {
+
+    @Autowired
+    private BonusService bonusService;
+
+    @Autowired
+    private TaxService taxService;
+
+    public void calculateNetSalary(Employee emp) {
+
+        double basicSalary = emp.getBasicSalary();
+
+        double bonus = bonusService.calculateBonus(basicSalary);
+
+        double tax = taxService.calculateTax(basicSalary);
+
+        double netSalary = basicSalary + bonus - tax;
+
+        System.out.println("\nEmployee Details");
+        System.out.println("---------------------");
+        System.out.println("Employee ID: " + emp.getEmpId());
+        System.out.println("Employee Name: " + emp.getEmpName());
+        System.out.println("Department: " + emp.getDepartment());
+        System.out.println("Basic Salary: " + basicSalary);
+
+        System.out.println("\nFinal Net Salary: " + netSalary);
+    }
+}
+//EmployeeSalaryConfig.java
+package com.salary.config;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.salary")
+public class EmployeeSalaryConfig {
+
+}
+
+// SalaryApplication.java
+package com.salary.main;
+
+
+
+import com.salary.config.EmployeeSalaryConfig;
+import com.salary.model.Employee;
+import com.salary.service.SalaryService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class SalaryApplication {
+
+    public static void main(String[] args) {
+
+        ApplicationContext context =
+                new AnnotationConfigApplicationContext(EmployeeSalaryConfig.class);
+
+        SalaryService salaryService = context.getBean(SalaryService.class);
+
+        Employee emp = new Employee(101, "Rahul Sharma", "IT", 50000);
+
+        salaryService.calculateNetSalary(emp);
+    }
+}
+//Pom.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>salary-managment-system</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.3.30</version>
+        </dependency>
+
+    </dependencies>
+</project>
