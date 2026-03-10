@@ -1,0 +1,107 @@
+//Student.java
+package org.configuration;
+
+public class Student {
+    private String st_name;
+    private String message;
+    public Student() {
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getSt_name() {
+        return st_name;
+    }
+    public void display(){
+        System.out.println("Name : " +st_name);
+        System.out.println("Message : " +message);
+    }
+
+    public void setSt_name(String st_name) {
+        this.st_name = st_name;
+    }
+}
+
+// StudentConfig.java
+package org.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class StudentConfig {
+    @Bean
+    public Student stdId(){
+        Student std = new Student();
+
+        std.setMessage("Welcome");
+        std.setSt_name("Sachin");
+        return std;
+    }
+    @Bean
+    public Department getDepartment(){
+        Department dept = new Department();
+
+        dept.setDept_id(1001);
+        dept.setDept_name("IT");
+         return dept;
+
+    }
+}
+
+//TestStudent.java
+
+package org.configuration;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+public class TestStudent {
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(StudentConfig.class);
+        Student student = context.getBean(Student.class);
+        student.display();
+        Department department = context.getBean(Department.class);
+        department.show_dept_detail();
+    }
+
+}
+
+// Department.java
+
+package org.configuration;
+
+public class Department {
+    private  int dept_id;
+    private String dept_name;
+
+    public Department() {
+    }
+
+    public int getDept_id() {
+        return dept_id;
+    }
+
+    public void setDept_id(int dept_id) {
+        this.dept_id = dept_id;
+    }
+
+    public String getDept_name() {
+        return dept_name;
+    }
+
+    public void setDept_name(String dept_name) {
+        this.dept_name = dept_name;
+    }
+    public void show_dept_detail(){
+        System.out.println("Department Id :" +dept_id);
+        System.out.println(("Department name : " +dept_name));
+    }
+}
+
